@@ -44,7 +44,7 @@ public class AddressBook {
             con = scanner.nextLine();
         }while(con.equalsIgnoreCase("n")|con.equalsIgnoreCase("N"));
     }
-    public void addnewContact(){
+    public void addnewContact() {
         System.out.println("Enter Details \n Firstname \n lastname \n address \n city \n zip, \n phonenum \n email \n");
         String fname = scanner.next();
         String lname = scanner.next();
@@ -55,17 +55,17 @@ public class AddressBook {
         //consume the newline character left in the buffer
         //scanner.nextLine();
         String email = scanner.next();
-        //boolean isDuplicate = contactsData.stream().anyMatch(contactAddress -> contactAddress.getFirstName().equalsIgnoreCase(fname));
+        boolean isDuplicate = contactsData.stream().anyMatch(contactAddress -> contactAddress.getFirstName().equalsIgnoreCase(fname));
         // used stream to find the duplicate of the firstname without case-sensitive
-        //if(isDuplicate)
-        //    System.out.println("Entry already exists. No Duplicate Entry is allowed .");
+        if (isDuplicate)
+            System.out.println("Entry already exists. No Duplicate Entry is allowed .");
             // no dulpicate entry then fname gets added to the contactaddress constructor at COntactAddress class.
-        //else{
+        else {
             ContactAddress obj1 = new ContactAddress(fname, lname, address, city, zip, phnum, email);
             System.out.println(obj1);
             System.out.println("Contact added Successfully");
         }
-
+    }
     public void editContact() {
         System.out.println("Enter the First name to edit the contacts:");
         String firstname = scanner.nextLine();
