@@ -1,7 +1,9 @@
 package com.bridgelabz.addressbook;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook {
     ArrayList<ContactAddress> contactsData;
@@ -21,6 +23,7 @@ public class AddressBook {
             System.out.println("1. Add Contact");
             System.out.println("2. Edit Contact");
             System.out.println("3. Delete Contact");
+            System.out.println("4. Search city by name \n Enter City Name : ");
             System.out.println(" Press 0 to exit ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -34,6 +37,9 @@ public class AddressBook {
                     break;
                 case 3:
                     deleteContact();
+                    break;
+                case 4:
+                    displayNameByCity();
                     break;
                 case 0:
                     break;
@@ -89,11 +95,11 @@ public class AddressBook {
     public void deleteContact() {
         System.out.println("Enter the fname to delete:");
         Scanner scanner4 = new Scanner(System.in);
-        String Conctodelete = scanner4.nextLine();
+        String contactToDelete = scanner4.nextLine();
 
         boolean contactFound = false;
         for (ContactAddress contact : contactsData) {
-            if (contact.getFirstName().equalsIgnoreCase(Conctodelete)) {
+            if (contact.getFirstName().equalsIgnoreCase(contactToDelete)) {
                 contactsData.remove(contact);
                 contactFound = true;
                 System.out.println("Contact Deleted");
@@ -104,4 +110,15 @@ public class AddressBook {
         if(!contactFound)
             System.out.println("Contact not list with given First name");
     }
+    public void displayNameByCity(){
+        System.out.println("Enter The Name of The City: ");
+        String city = scanner.nextLine();
+        List<String> name = contactsData.stream()
+                .filter(person -> person.getCity().equals(city))
+                .map(ContactAddress::getFirstName)
+                .collect(Collectors.toList());
+        System.out.println(name);
+    }
+
+
 }

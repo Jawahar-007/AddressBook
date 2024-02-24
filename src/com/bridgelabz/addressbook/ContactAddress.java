@@ -22,6 +22,27 @@ public class ContactAddress {
         return Firstname;
     }
 
+    public String getLastname() {
+        return Lastname;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+    public String getCity(){ return City;}
+
+    public int getZip() {
+        return Zip;
+    }
+
+    public long getPhnum() {
+        return Phnum;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
     public void setFirstname(String firstname){
         Firstname = firstname;
     }
